@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Flask MySQL</title>
+</head>
+<body>
+    <h1>Daftar Pengguna</h1>
+    <a href="{{ url_for('add_user') }}">Tambah Pengguna</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <a href="{{ url_for('update_user', id=user.id) }}">Edit</a>
+                    <a href="{{ url_for('delete_user', id=user.id) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
